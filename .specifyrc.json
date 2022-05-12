@@ -1,25 +1,22 @@
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env') });
-
-module.exports = {
-  repository: process.env.REPOSITORY,
-  personalAccessToken: process.env.PERSONAL_ACCESS_TOKEN,
-  rules: [
+{
+  "repository": "@a1/evolution",
+  "rules": [
     {
-      name: 'Design Tokens / Theme',
-      path: 'theme/tailwind-theme.js',
-      parsers: [
-        {
-          name: 'to-tailwind',
-          options: {
-            formatName: 'kebabCase',
-            formatConfig: {
-              objectName: 'extend',
-              module: 'commonjs',
-            },
-          },
-        },
-      ],
+      "name": "Design Tokens / Colors",
+      "path": "assets/style/colors.css,
+      "filter": {
+        "types": ["color"]
     },
-  ],
-};
+    "parser": [
+      {
+        "name": "to-css-custom-properties",
+        "options": {
+          "formatTokens": {
+            "color": "hsl"
+          }
+        }
+      }
+    ]
+    }
+  ]
+}
